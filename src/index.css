@@ -1,0 +1,79 @@
+/* @import url() FONT IMPORTS MUST ALWAYS BE AT THE VERY TOP OF THIS FILE, ABOVE THE TAILWIND IMPORTS — DO NOT DELETE THIS COMMENT */
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&family=Inter:wght@400;500&display=swap');
+
+/* CRITICAL: THE FOLLOWING TAILWIND IMPORTS MUST NEVER BE DELETED OR REORDERED — DO NOT DELETE THIS COMMENT */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* END TAILWIND IMPORTS — ALL OTHER CSS MUST GO BELOW THIS LINE */
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-[1520px] px-6 md:px-12;
+  }
+}
+html {
+  background: #0a0a0b;
+}
+body {
+  overflow-x: clip;
+  background: #0a0a0b;
+  font-family: Inter, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+::selection {
+  background: #6fd8f2;
+  color: #0a0a0b;
+}
+.glass {
+  background: rgba(17, 17, 19, 0.42);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid rgba(242, 238, 231, 0.14);
+}
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(10, 10, 11, 0.2);
+}
+@keyframes node-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+.node-pulse {
+  animation: node-pulse 2.4s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+}
+@keyframes scroll-cue {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+.scroll-cue {
+  animation: scroll-cue 2s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .node-pulse,
+  .scroll-cue {
+    animation: none;
+  }
+}

@@ -1,0 +1,83 @@
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { HeroNodes } from './HeroNodes';
+import { SplitText } from '../ui/SplitText';
+import { MagneticButton } from '../ui/MagneticButton';
+import { images } from '../../data/images';
+import { scrollToId } from '../../utils/scroll';
+import { ease } from '../../utils/motion';
+
+export function Hero() {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] });
+  const scale = useTransform(scrollYProgress, [0, 1], [1.04, 1.24]);
+  const textY = useTransform(scrollYProgress, [0, 0.55], [0, -140]);
+  const textOpacity = useTransform(scrollYProgress, [0.05, 0.45], [1, 0]);
+  const lines = useTransform(scrollYProgress, [0.06, 0.62], [0, 1]);
+  const veil = useTransform(scrollYProgress, [0.74, 1], [0, 1]);
+
+  return (
+    <section ref={ref} id="home" aria-label="AIIVA Automation" className="relative h-[220vh] bg-ink">
+      <div className="sticky top-0 h-screen overflow-hidden">
+        <motion.div style={{ scale }} className="absolute inset-0 will-change-transform">
+          <motion.img
+            src={images.hero}
+            alt="Double-height villa living room at dusk with glass walls, cove lighting and an illuminated pool"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3, ease }}
+            className="h-full w-full object-cover" />
+          
+        </motion.div>
+        <div className="absolute inset-0 bg-ink/30" />
+        <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-ink via-ink/60 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-ink/70 to-transparent" />
+
+        <HeroNodes progress={lines} />
+
+        <motion.div style={{ y: textY, opacity: textOpacity }} className="absolute inset-x-0 bottom-0 pb-12 md:pb-16">
+          <div className="shell grid gap-8 md:grid-cols-12 md:items-end md:gap-10">
+            <SplitText
+              as="h1"
+              onMount
+              delay={0.2}
+              stagger={0.07}
+              text={'Your Home.\n_Smarter_ by Design.'}
+              className="font-display text-[14vw] font-medium leading-[0.92] tracking-[-0.04em] text-bone md:col-span-8 md:text-[7.4vw]"
+              accentClassName="font-serif italic font-normal text-champagne tracking-[-0.01em]" />
+            
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, ease, delay: 0.75 }}
+              className="md:col-span-4 md:pb-4">
+              
+              <p className="max-w-sm text-base leading-relaxed text-bone/75 md:text-lg">
+                Intelligent automation that brings lighting, climate, security, entertainment and everyday living together.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <MagneticButton onClick={() => scrollToId('showcase')}>Explore Smart Living</MagneticButton>
+                <MagneticButton variant="outline" onClick={() => scrollToId('how-it-works')}>
+                  See How It Works
+                </MagneticButton>
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
+
+        <motion.div
+          style={{ opacity: textOpacity }}
+          className="absolute right-6 top-1/2 hidden -translate-y-1/2 flex-col items-center gap-4 md:right-12 md:flex"
+          aria-hidden="true">
+          
+          <span className="text-[10px] uppercase tracking-[0.3em] text-bone/50 [writing-mode:vertical-rl]">Scroll</span>
+          <span className="relative block h-16 w-px overflow-hidden bg-bone/15">
+            <span className="scroll-cue absolute inset-0 bg-bone/70" />
+          </span>
+        </motion.div>
+
+        <motion.div style={{ opacity: veil }} className="pointer-events-none absolute inset-0 bg-bone" />
+      </div>
+    </section>);
+
+}
