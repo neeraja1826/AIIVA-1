@@ -5,6 +5,7 @@ import { Hero } from './components/hero/Hero';
 import { Intro } from './components/Intro';
 import { HowItWorks } from './components/how/HowItWorks';
 import { Showcase } from './components/showcase/Showcase';
+import { Products } from './components/Products';
 import { AutomateGrid } from './components/AutomateGrid';
 import { Scenes } from './components/scenes/Scenes';
 import { Ecosystem } from './components/Ecosystem';
@@ -26,6 +27,7 @@ export function App() {
           <Intro />
           <HowItWorks />
           <Showcase />
+          <Products />
           <AutomateGrid />
           <Scenes />
           <Ecosystem />
@@ -35,6 +37,6 @@ export function App() {
         </main>
         <Footer />
       </div>
-    </MotionConfig>);
-
+    </MotionConfig>
+  );
 }

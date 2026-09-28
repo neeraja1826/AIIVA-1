@@ -1,4 +1,5 @@
 export const introStats = [
-{ value: 240, suffix: '+', label: 'Residences automated' },
-{ value: 60, suffix: '+', label: 'Integrated brands & protocols' },
-{ value: 24, suffix: '/7', label: 'Remote monitoring & support' }];
+  { value: 500, suffix: '+', label: 'Smart spaces automated in Hyderabad' },
+  { value: 100, suffix: '%', label: 'Retrofit & new construction ready' },
+  { value: 24, suffix: '/7', label: 'Direct local support & warranty' },
+];
